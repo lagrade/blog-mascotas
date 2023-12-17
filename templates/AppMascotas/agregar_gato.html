@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block cambio %}
+  <h2>Agregar Gato</h2>
+<form action="" method="POST" ENCTYPE="multipart/form-data">
+    {% csrf_token%}
+    {{ form.as_p}}
+    <button type="submit">Agregar</button>
+</form>
+
+{% endblock%}

@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block cambio %}
+   <h2>Gatos en adopcion</h2>
+   <ul>
+      {% for gato in mascotas %}
+      <li>
+         {{gato.titulo}}-<br>
+         {{gato.fecha_recate}}<br>
+         {{gato.imagen}}
+      </li>
+      {% endfor %}
+   </ul>
+
+<a class="btn btn-primary" href="{% url 'agregarGato' %}">-Agregar  gato</a>
+{% endblock%}

@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block cambio %}
+
+<form  method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+
+
+ </form>
+<h1>Esta es tu pagina de perfil</h1>
+  <h2>Usuario: {{user.username}}</h2>
+<hr>
+   <h2>Email: {{user.email}}</h2>
+<hr>
+<h2><a href="/accounts/editar/">Editar Perfil</a> </h2>
+
+<h4>Quieres adoptar un  <a href="{% url 'gatoslist' %}">Gato</a> o un <a href="{% url 'perroslist' %}">Perro</a> </h4>
+<br>
+<hr>
+<h4>Quieres publicar un <a href="{% url 'agregarGato' %}">Gato</a> o un <a href="{% url 'agregarPerro' %}">Perro</a></h4>
+
+{% endblock%}
