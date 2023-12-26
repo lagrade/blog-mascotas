@@ -13,11 +13,18 @@
 <hr>
    <h2>Email: {{user.email}}</h2>
 <hr>
+<h2>Apellido: {{user.last_name}}</h2>
+<hr>
 <h2><a href="/accounts/editar/">Editar Perfil</a> </h2>
-
+<hr>
+<hr>
+<h2><a href="/accounts/avatar/">cargar imagen de Perfil</a> </h2>
+<hr>
 <h4>Quieres adoptar un  <a href="{% url 'gatoslist' %}">Gato</a> o un <a href="{% url 'perroslist' %}">Perro</a> </h4>
 <br>
 <hr>
 <h4>Quieres publicar un <a href="{% url 'agregarGato' %}">Gato</a> o un <a href="{% url 'agregarPerro' %}">Perro</a></h4>
-
+<hr>
+<h2><a href="/accounts/logout/">cerrar sesion</a> </h2>
+<hr>
 {% endblock%}

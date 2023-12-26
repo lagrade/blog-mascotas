@@ -2,7 +2,7 @@
 
 {% block cambio %}
   <h2>Editar perfil</h2>
-<form action="{% url 'login' %}" method="POST" ENCTYPE="multipart/form-data">
+<form  method="POST" ENCTYPE="multipart/form-data">
     {% csrf_token%}
     {{ form.as_p}}
     <button class="btn btn-primary" type="submit">editar</button>

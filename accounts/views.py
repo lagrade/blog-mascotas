@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
 
-from accounts.forms import LoginForm, UserRegisterForm, UserUpdateForm
+from accounts.forms import LoginForm, UserRegisterForm, UserUpdateForm, AvatarUpdateForm
+from accounts.models import Avatar
 
 
 # class RegistroUsuario(CreateView):
@@ -21,7 +22,7 @@ def registro_usuario(request):
 
         if form.is_valid():
             form.save()
-            return redirect('/accounts/perfil')
+            return redirect('perfil')
     form = UserRegisterForm()
     contexto={
         "form":form
@@ -76,4 +77,37 @@ def editar_request(request):
     contexto = {
         "form": form
     }
-    return render(request, "/accounts/editar_perfil.html", contexto)
+    return render(request, 'accounts/editar_perfil.html', contexto)
+
+
+
+@login_required
+def editar_avatar_request(request):
+    user = request.user
+    if request.method == "POST":
+
+        form = AvatarUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+
+            try:
+                avatar = user.avatar
+                avatar.imagen = data["imagen"]
+            except:
+                avatar = Avatar(
+                    user=user,
+                    imagen=data["imagen"]
+                )
+            avatar.save()
+
+            return redirect("perfil")
+
+    form = AvatarUpdateForm()
+    contexto = {
+        "form": form
+    }
+    return render(request, "accounts/avatar.html", contexto)
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')

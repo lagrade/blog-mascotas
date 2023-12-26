@@ -24,10 +24,14 @@
 
                 <a class="navbar-brand" href="/app/gatoslist">Gatos</a>
                 <a class="navbar-brand" href="/app/perroslist">Perros</a>
-
+                {% if user.is_authenticated %}
+                <h3><a href="/accounts/perfil/">{{ user.get_username }}</a> </h3>
+                <img style="height: 60px" src="{{ user.avatar.imagen.url}} "alt="">
+                <a class="btn btn-primary" href="/accounts/logout/">cerrar sesion</a>
+                {% else%}
                 <a class="btn btn-primary" href="/accounts/login/">Ingresar</a>
                 <a class="btn btn-primary" href="/accounts/registro/">Registrate</a>
-                <a class="btn btn-primary" href="/accounts/logout/">cerrar sesion</a>
+                {% endif%}
             </div>
         </nav>
         <!-- Masthead-->

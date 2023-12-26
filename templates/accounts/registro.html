@@ -2,8 +2,8 @@
 
 {% block cambio %}
   <h2>Registo de Usuario</h2>
-<form action="{% url 'login' %}" method="POST" ENCTYPE="multipart/form-data">
-    {% csrf_token%}
+<form method="POST" ENCTYPE="multipart/form-data">
+    {% csrf_token %}
     {{ form.as_p}}
     <button class="btn btn-primary" type="submit">Registrame</button>
 </form>
